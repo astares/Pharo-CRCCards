@@ -21,6 +21,7 @@ CRCCardPresenter class >> open [
 	| instance |
 	instance := self new.
 	instance model: CRCCard new.
+	instance model inspect.
 	instance open
 ]
 
@@ -48,4 +49,11 @@ CRCCardPresenter >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter
 		title: self model name
+]
+
+{ #category : 'initialization' }
+CRCCardPresenter >> modelChanged [ 
+	self model ifNil: [ ^self ].
+	nameInput text: self model name.
+
 ]

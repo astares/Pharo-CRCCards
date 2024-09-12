@@ -3,7 +3,7 @@ A Class Responsibility Collaborator (CRC) card
 "
 Class {
 	#name : 'CRCCard',
-	#superclass : 'Object',
+	#superclass : 'Model',
 	#instVars : [
 		'name',
 		'responsibilities',
@@ -62,7 +62,8 @@ CRCCard >> name [
 { #category : 'accessing' }
 CRCCard >> name: anObject [
 
-	name := anObject
+	name := anObject.
+	self valueChanged
 ]
 
 { #category : 'accessing' }
