@@ -14,6 +14,14 @@ Class {
 	#tag : 'Base'
 }
 
+{ #category : 'instan' }
+CRCCard class >> named: aString [
+
+	^ (self new)
+			name: aString;
+			yourself
+]
+
 { #category : 'operating' }
 CRCCard >> addCollaborator: aString [
     collaborators add: aString

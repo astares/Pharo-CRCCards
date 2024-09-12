@@ -397,3 +397,11 @@ CRCCardTest >> testInitialName [
 
 	self assert: card name equals: 'Unnamed Card'
 ]
+
+{ #category : 'tests' }
+CRCCardTest >> testInstanceCreationByName [ 
+
+	| instance |
+	instance := CRCCard named: 'Student'.
+	self assert: instance name equals: 'Student'
+]
