@@ -22,6 +22,6 @@ CRCCardAddCardCommmand >> initialize [
 
 	super initialize.
 	self
-		name: 'Add CRC Card';
+		name: 'Add Card';
 		description: 'Add a new CRC card'
 ]

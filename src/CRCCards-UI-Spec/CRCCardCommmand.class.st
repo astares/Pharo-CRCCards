@@ -11,3 +11,17 @@ CRCCardCommmand class >> isAbstract [
 
 	^ self == CRCCardCommmand
 ]
+
+{ #category : 'converting' }
+CRCCardCommmand >> asSpecCommand [
+
+	^ super asSpecCommand
+		  iconName: self iconName;
+		  yourself
+]
+
+{ #category : 'accessing' }
+CRCCardCommmand >> iconName [
+
+	^ self subclassResponsibility
+]

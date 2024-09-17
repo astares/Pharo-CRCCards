@@ -5,6 +5,7 @@ Class {
 	#name : 'CRCCardBrowser',
 	#superclass : 'SpPresenter',
 	#instVars : [
+		'actionBar',
 		'cardList'
 	],
 	#category : 'CRCCards-UI-Spec-Presenters',
@@ -33,13 +34,17 @@ CRCCardBrowser class >> open [
 { #category : 'layout' }
 CRCCardBrowser >> defaultLayout [ 
 
-	^ SpBoxLayout newTopToBottom
-		add: #cardList; 
-		yourself
+	^ SpBoxLayout newVertical
+				   add: #actionBar
+				   expand: false
+				   fill: false
+				   padding: 0;
+				   add: #cardList;
+		  yourself
 ]
 
-{ #category : 'initialization' }
-CRCCardBrowser >> initializePresenters [
+{ #category : 'private - initialization' }
+CRCCardBrowser >> initializeCardList [
 
 	cardList := self newList.
 	cardList headerTitle: 'Name'.
@@ -48,8 +53,16 @@ CRCCardBrowser >> initializePresenters [
 ]
 
 { #category : 'initialization' }
-CRCCardBrowser >> initializeWindow: aWindowPresenter [
+CRCCardBrowser >> initializePresenters [
 
+	actionBar := SpToolbarPresenterBuilder new
+		             visit: self rootCommandsGroup / 'card commands';
+		             toolbarPresenter.
+	self initializeCardList 
+]
+
+{ #category : 'initialization' }
+CRCCardBrowser >> initializeWindow: aWindowPresenter [
 	
 	aWindowPresenter
 		title: 'All Cards'

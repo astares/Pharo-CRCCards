@@ -25,6 +25,12 @@ CRCCardApplication class >> worldMenuOn: aBuilder [
 ]
 
 { #category : 'running' }
+CRCCardApplication >> newIconProvider [
+ 
+	^ SpPharoThemeIconProvider new
+]
+
+{ #category : 'running' }
 CRCCardApplication >> start [ 
 	<script: 'self new start'>
 	| newPresenter |
