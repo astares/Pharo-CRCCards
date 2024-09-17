@@ -9,12 +9,12 @@ Class {
 		'collaboratersList',
 		'nameInput'
 	],
-	#category : 'CRCCards-UI-Spec-Base',
+	#category : 'CRCCards-UI-Spec-Presenters',
 	#package : 'CRCCards-UI-Spec',
-	#tag : 'Base'
+	#tag : 'Presenters'
 }
 
-{ #category : 'user interface' }
+{ #category : 'commands' }
 CRCCardPresenter class >> buildCommandsGroupWith: presenterIntance forRoot: rootCommandGroup [
 
 	rootCommandGroup register:
@@ -27,7 +27,7 @@ CRCCardPresenter class >> buildCommandsGroupWith: presenterIntance forRoot: root
 			register: (CRCCardAddResponsibilityCommmand forSpecContext: presenterIntance))	
 ]
 
-{ #category : 'user interface' }
+{ #category : 'commands' }
 CRCCardPresenter class >> open [
 	<script>
 	
@@ -57,7 +57,7 @@ CRCCardPresenter >> initializePresenters [
 	responsibilitiesList := self newList.
 	responsibilitiesList headerTitle: 'Responsibilities'.
 	responsibilitiesList	
-		contextMenu: [ (self rootCommandsGroup / 'responsibility commands') beRoot asMenuPresenter	].
+		contextMenu: [ (self rootCommandsGroup / 'responsibility commands') beRoot asMenuPresenter ].
 
 	collaboratersList := self newList.
 	collaboratersList headerTitle: 'Collaborators'.
@@ -68,8 +68,9 @@ CRCCardPresenter >> initializePresenters [
 { #category : 'initialization' }
 CRCCardPresenter >> initializeWindow: aWindowPresenter [
 
+	
 	aWindowPresenter
-		title: self model name
+		title: (self model ifNil: [ 'Unnamed Card' ] ifNotNil: [:model | model name ])
 ]
 
 { #category : 'initialization' }
