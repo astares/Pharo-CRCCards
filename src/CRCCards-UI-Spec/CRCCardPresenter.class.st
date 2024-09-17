@@ -15,6 +15,19 @@ Class {
 }
 
 { #category : 'user interface' }
+CRCCardPresenter class >> buildCommandsGroupWith: presenterIntance forRoot: rootCommandGroup [
+
+	rootCommandGroup register:
+		((CmCommandGroup named: 'collaborator commands') asSpecGroup 
+			register: (CRCCardAddCollaboratorCommmand forSpecContext: presenterIntance)).
+			
+		
+	rootCommandGroup register:
+		((CmCommandGroup named: 'responsibility commands') asSpecGroup 
+			register: (CRCCardAddResponsibilityCommmand forSpecContext: presenterIntance))	
+]
+
+{ #category : 'user interface' }
 CRCCardPresenter class >> open [
 	<script>
 	
@@ -40,8 +53,16 @@ CRCCardPresenter >> defaultLayout [
 { #category : 'initialization' }
 CRCCardPresenter >> initializePresenters [
 	nameInput := self newTextInput placeholder: 'Card name'.
+
 	responsibilitiesList := self newList.
-	collaboratersList := self newList
+	responsibilitiesList headerTitle: 'Responsibilities'.
+	responsibilitiesList	
+		contextMenu: [ (self rootCommandsGroup / 'responsibility commands') beRoot asMenuPresenter	].
+
+	collaboratersList := self newList.
+	collaboratersList headerTitle: 'Collaborators'.
+	collaboratersList	
+		contextMenu: [ (self rootCommandsGroup / 'collaborator commands') beRoot asMenuPresenter	]
 ]
 
 { #category : 'initialization' }
