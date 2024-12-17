@@ -31,6 +31,11 @@ CRCCardBrowser class >> open [
 	instance open
 ]
 
+{ #category : 'adding' }
+CRCCardBrowser >> addCard: aCRCCard [ 
+	self shouldBeImplemented.
+]
+
 { #category : 'layout' }
 CRCCardBrowser >> defaultLayout [ 
 

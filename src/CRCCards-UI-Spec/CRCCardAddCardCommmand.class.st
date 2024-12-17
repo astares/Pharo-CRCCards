@@ -8,7 +8,11 @@ Class {
 
 { #category : 'executing' }
 CRCCardAddCardCommmand >> execute [
-	self context halt
+	| name |
+	name := UIManager default request: 'Name'.
+	name ifNil: [ ^ self ].
+	name ifEmpty: [ ^ self ].
+	self context addCard: (CRCCard named: name)
 ]
 
 { #category : 'accessing' }
